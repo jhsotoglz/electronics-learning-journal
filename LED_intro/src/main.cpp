@@ -1,18 +1,22 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+const int LED_PIN = 13;
+bool ledState = false;
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+    pinMode(LED_PIN, OUTPUT);
+    Serial.begin(9600);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
+    // Check if any serial data is available
+    if (Serial.available() > 0) {
+        char incoming = Serial.read();   // Read one character
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+        if (incoming == ' ') {           // If it's the spacebar
+            ledState = !ledState;        // Toggle state
+            digitalWrite(LED_PIN, ledState ? HIGH : LOW);
+            Serial.println(ledState ? "LED ON" : "LED OFF");
+        }
+    }
 }
