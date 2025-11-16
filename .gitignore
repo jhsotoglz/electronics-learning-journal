@@ -25,7 +25,7 @@
 Thumbs.db
 
 # ================================
-# Python virtual environments (if added later)
+# Python virtual environments
 # ================================
 venv/
 .env/
@@ -45,7 +45,7 @@ ENV/
 *.bak
 
 # ================================
-# Arduino CLI temporary files (if using Arduino extension)
+# Arduino CLI temporary files
 # ================================
 .arduino/
 .arduino-core/
