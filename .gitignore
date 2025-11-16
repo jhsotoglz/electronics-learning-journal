@@ -1,0 +1,53 @@
+# General
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+*.bak
+
+# VS Code
+.vscode/
+!.vscode/extensions.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+.env/
+venv/
+.venv/
+.envrc
+
+# Arduino
+*.eep
+*.elf
+*.hex
+*.bin
+*.map
+
+# Arduino build directories
+build/
+*.pio/
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# PlatformIO
+.platformio/
+.pio/
+cmake-build-*/
+
+# C/C++
+*.o
+*.obj
+*.out
+*.a
+*.so
+*.exe
+
+# Backup files
+*~
+*.old
