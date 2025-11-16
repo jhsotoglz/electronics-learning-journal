@@ -1,51 +1,22 @@
-# ================================
-# PlatformIO Build and Cache Files
-# ================================
+# platformio junk
 .pio/
 .pioenvs/
 .piolibdeps/
-.pio/build/
-.pio/libdeps/
 
-# ================================
-# VS Code Settings 
-# Only ignore user-specific settings
-# ================================
-.vscode/c_cpp_properties.json
-.vscode/launch.json
-.vscode/
-
-# Keep shared extensions setup:
+# ignore all .vscode EXCEPT extensions.json
+.vscode/*
 !.vscode/extensions.json
 
-# ================================
-# OS-specific crap
-# ================================
+# OS junk
 .DS_Store
 Thumbs.db
 
-# ================================
-# Python virtual environments
-# ================================
+# Python venvs
 venv/
 .env/
-ENV/
 
-# ================================
-# Logs / temporary files
-# ================================
+# logs and backups
 *.log
 *.tmp
-*.temp
-
-# ================================
-# Backup files
-# ================================
-*~
 *.bak
-
-# ================================
-# Arduino CLI temporary files
-# ================================
-.arduino/
-.arduino-core/
+*~
