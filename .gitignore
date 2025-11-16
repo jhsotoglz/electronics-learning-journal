@@ -8,15 +8,15 @@
 .pio/libdeps/
 
 # ================================
-# VS Code Settings
+# VS Code Settings 
 # Only ignore user-specific settings
 # ================================
 .vscode/c_cpp_properties.json
 .vscode/launch.json
-.vscode
+.vscode/
 
 # Keep shared extensions setup:
-# !.vscode/extensions.json
+!.vscode/extensions.json
 
 # ================================
 # OS-specific crap
