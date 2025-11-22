@@ -1,18 +1,24 @@
-#include <Arduino.h>
+# include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+const int BUTTON_READ_PIN = 8;
 
-void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+void setup () {
+
+  pinMode(BUTTON_READ_PIN, INPUT_PULLUP);
+
+  Serial.begin(9600); // Without initializing Serial, the Arduino won’t send anything to the Serial Monitor.
+
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-}
+void loop () {
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  int buttonState = digitalRead(BUTTON_READ_PIN);
+
+  if (buttonState == LOW) {
+    Serial.println("Button Pressed!!!");
+  } else {
+    Serial.println("Button Released!!!");
+  }
+
+  delay(100);
 }
