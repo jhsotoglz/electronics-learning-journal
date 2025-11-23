@@ -33,7 +33,7 @@ void loop () {
 
     // Pedestrian requested crossing privilage
     if (digitalRead(BUTTON_PIN) == LOW) {
-        pedestrianRequested == true;
+        pedestrianRequested = true;
     }
 
     // TRAFFIC LIGHT STATE MACHINE
@@ -55,7 +55,7 @@ void loop () {
     if (phase == 1) {
         digitalWrite(YELLOW_LED_PIN, HIGH);
 
-            if (now - phaseStartTime >= YELLOW_TIME || pedestrianRequested) {
+            if (now - phaseStartTime >= YELLOW_TIME) {
                 digitalWrite(YELLOW_LED_PIN, LOW);
                 phase = 2;
                 phaseStartTime = now;
@@ -68,7 +68,23 @@ void loop () {
         digitalWrite(RED_LED_PIN, HIGH);
 
         // Printing crossing countdown for pedestrian
+        unsigned long elapsedWalked = now - walkStartTime;
         
+        if (elapsedWalked <= WALK_TIME) {
+            int secondsLeft = (WALK_TIME - elapsedWalked) / 1000;
+            Serial.print("Crossing Time Remaining: ");
+            Serial.print(secondsLeft);
+            Serial.println("seconds");
+            delay(250);
+        }
+
+        // After WALK_TIME passes, continue sequence and go back to green
+        if (elapsedWalked >= WALK_TIME) {
+            digitalWrite(RED_LED_PIN, LOW);
+            phase = 0;
+            phaseStartTime = now;
+            pedestrianRequested = false; // Reset crossing button to not pressed
+        }
     }
 
 
