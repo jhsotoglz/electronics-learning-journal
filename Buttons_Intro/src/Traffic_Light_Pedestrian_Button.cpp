@@ -6,9 +6,17 @@ const int YELLOW_LED_PIN = 10;
 
 const int BUTTON_PIN = 2;
 
-const int RED_TIME = 10000;
-const int GREEN_TIME = 10000;
-const int YELLOW_TIME = 3000;
+const unsigned long RED_TIME = 10000;
+const unsigned long GREEN_TIME = 10000;
+const unsigned long  YELLOW_TIME = 3000;
+
+const unsigned long WALK_TIME = 10000;
+
+unsigned long phaseStartTime = 0;
+unsigned long walkStartTime = 0;
+
+bool pedestrianRequested = false;
+int phase = 0;
 
 void stoplight_sequence ();
 
