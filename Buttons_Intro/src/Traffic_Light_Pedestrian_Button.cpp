@@ -1,8 +1,10 @@
 # include <Arduino.h>
 
 const int RED_LED_PIN = 13;
-const int GREEN_LED_PIN = 4;
-const int YELLOW_LED_PIN = 2;
+const int GREEN_LED_PIN = 8;
+const int YELLOW_LED_PIN = 10;
+
+const int BUTTON_PIN = 2;
 
 const int RED_TIME = 10000;
 const int GREEN_TIME = 10000;
@@ -14,6 +16,10 @@ void setup () {
     pinMode(RED_LED_PIN, OUTPUT);
     pinMode(GREEN_LED_PIN, OUTPUT);
     pinMode(YELLOW_LED_PIN, OUTPUT);
+
+    pinMode(BUTTON_PIN, INPUT_PULLUP);
+
+    Serial.begin(9600);
 }
 
 void loop () {
