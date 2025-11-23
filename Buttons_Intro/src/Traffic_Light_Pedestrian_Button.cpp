@@ -18,8 +18,6 @@ unsigned long walkStartTime = 0;
 bool pedestrianRequested = false;
 int phase = 0;
 
-void stoplight_sequence ();
-
 void setup () {
     pinMode(RED_LED_PIN, OUTPUT);
     pinMode(GREEN_LED_PIN, OUTPUT);
@@ -28,29 +26,50 @@ void setup () {
     pinMode(BUTTON_PIN, INPUT_PULLUP);
 
     Serial.begin(9600);
+    phaseStartTime = millis();
 }
 
 void loop () {
-    stoplight_sequence();
-}
 
-void stoplight_sequence () {
-    
-    digitalWrite(GREEN_LED_PIN, HIGH);
+    // Pedestrian requested crossing privilage
+    if (digitalRead(BUTTON_PIN) == LOW) {
+        pedestrianRequested == true;
+    }
 
-    delay(GREEN_TIME);
+    // TRAFFIC LIGHT STATE MACHINE
 
-    digitalWrite(GREEN_LED_PIN, LOW);
+    unsigned long now = millis();
 
-    digitalWrite(YELLOW_LED_PIN, HIGH);
+    // Phase 0 - GREEN LIGHT
+    if (phase == 0) {
+        digitalWrite(GREEN_LED_PIN, HIGH);
 
-    delay(YELLOW_TIME);
+            if (now - phaseStartTime >= GREEN_TIME || pedestrianRequested) {
+                digitalWrite(GREEN_LED_PIN, LOW);
+                phase = 1;
+                phaseStartTime = now;
+            }
+    }
 
-    digitalWrite(YELLOW_LED_PIN, LOW);
+    // Phase 1 - YELLOW LIGHT
+    if (phase == 1) {
+        digitalWrite(YELLOW_LED_PIN, HIGH);
 
-    digitalWrite(RED_LED_PIN, HIGH);
+            if (now - phaseStartTime >= YELLOW_TIME || pedestrianRequested) {
+                digitalWrite(YELLOW_LED_PIN, LOW);
+                phase = 2;
+                phaseStartTime = now;
+                walkStartTime = now;    // Crossing timer starts
+            }
+    }
 
-    delay(RED_TIME);
+    // Phase 2 - RED LIGHT
+    if (phase == 2) {
+        digitalWrite(RED_LED_PIN, HIGH);
 
-    digitalWrite(RED_LED_PIN, LOW);
+        // Printing crossing countdown for pedestrian
+        
+    }
+
+
 }
