@@ -21,6 +21,7 @@ void loop() {
   Serial.print(sensorValue);
   Serial.print("   LED brightness: ");
   Serial.print(brightness);
+  Serial.println();
 
   delay(10);
 
